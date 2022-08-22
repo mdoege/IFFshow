@@ -74,7 +74,11 @@ if s(0) != "FORM":
     print("not a FORM")
     sys.exit(1)
 
-if s(8) != "ILBM":
+PBM = False
+if s(8) == "PBM ":
+    print("PBM image")
+    PBM = True
+elif s(8) != "ILBM":
     print("not an ILBM")
     sys.exit(1)
 
@@ -115,10 +119,78 @@ bits_per_line = 16 * int(ceil(xdim / 16))
 bytes_per_line = int(bits_per_line * planes / 8)
 
 # Draw regular IFF file
-for y in range(ydim):
-    # handle run-length image compression
-    if comp == 1:
+if not PBM:     # read ILBM image
+    for y in range(ydim):
+        # handle run-length image compression
+        if comp == 1:
+            tmp = []
+            while True:
+                con = a[pos]
+                # http://fileformats.archiveteam.org/wiki/PackBits
+                if 0 <= con <= 127:
+                    for k in range(con+1):
+                        tmp.append(a[pos+1+k])
+                    pos += con + 2
+                elif 129 <= con <= 255:
+                    for k in range(257 - con):
+                        tmp.append(a[pos+1])
+                    pos += 2
+                else:
+                    pos += 1
+                if len(tmp) > bytes_per_line:
+                    print(y, "error")
+                    1/0
+                if len(tmp) == bytes_per_line:
+                    break
+            bb = bytearray(tmp)
+        else:
+            bb = a[pos:pos+bytes_per_line]
+            pos += bytes_per_line
+
+        bits = ""
+        for n in range(bytes_per_line):
+            bits += format(bb[n], '08b')
+
+        # set up HAM variables
+        if HAM:
+            rr, gg, bb = 0, 0, 0
+            hi, lo = 2**(planes-1), 2**(planes-2)
+            if planes == 6:
+                fact = 16
+                mask = 15
+            if planes == 8:
+                fact = 4
+                mask = 63
+        for x in range(xdim):
+            col = 0
+            for p in range(planes):
+                if bits[bits_per_line * p + x] == "1":
+                    col |= 1 << p
+            if planes == 24 or planes == 32:
+                bb = (col >> 16) & 255
+                gg = (col >>  8) & 255
+                rr =  col        & 255
+                img.set_at((x, y), (rr, gg, bb))
+            elif HAM:   # https://en.wikipedia.org/wiki/ILBM
+                if col & hi == 0 and col & lo == 0:
+                    index = col & mask
+                    img.set_at((x, y), colormap[index])
+                    rr, gg, bb = colormap[index][0], colormap[index][1], colormap[index][2]
+                if col & hi == 0 and col & lo == lo:
+                    bb = fact * (col & mask)
+                    img.set_at((x, y), (rr, gg, bb))
+                if col & hi == hi and col & lo == lo:
+                    gg = fact * (col & mask)
+                    img.set_at((x, y), (rr, gg, bb))
+                if col & hi == hi and col & lo == 0:
+                    rr = fact * (col & mask)
+                    img.set_at((x, y), (rr, gg, bb))
+            else:
+                img.set_at((x, y), colormap[col])
+else:   # read PBM image
+    if comp == 1 and planes > 0:
         tmp = []
+        pos = body_start
         while True:
             con = a[pos]
             # http://fileformats.archiveteam.org/wiki/PackBits
@@ -132,55 +204,15 @@ for y in range(ydim):
                 pos += 2
             else:
                 pos += 1
-            if len(tmp) > bytes_per_line:
-                print(y, "error")
-                1/0
-            if len(tmp) == bytes_per_line:
+            if len(tmp) == xdim * ydim:
                 break
         bb = bytearray(tmp)
     else:
-        bb = a[pos:pos+bytes_per_line]
-        pos += bytes_per_line
+        bb = a[body_start:]
 
-    bits = ""
-    for n in range(bytes_per_line):
-        bits += format(bb[n], '08b')
-
-    # set up HAM variables
-    if HAM:
-        rr, gg, bb = 0, 0, 0
-        hi, lo = 2**(planes-1), 2**(planes-2)
-        if planes == 6:
-            fact = 16
-            mask = 15
-        if planes == 8:
-            fact = 4
-            mask = 63
-    for x in range(xdim):
-        col = 0
-        for p in range(planes):
-            if bits[bits_per_line * p + x] == "1":
-                col |= 1 << p
-        if planes == 24 or planes == 32:
-            bb = (col >> 16) & 255
-            gg = (col >>  8) & 255
-            rr =  col        & 255
-            img.set_at((x, y), (rr, gg, bb))
-        elif HAM:   # https://en.wikipedia.org/wiki/ILBM
-            if col & hi == 0 and col & lo == 0:
-                index = col & mask
-                img.set_at((x, y), colormap[index])
-                rr, gg, bb = colormap[index][0], colormap[index][1], colormap[index][2]
-            if col & hi == 0 and col & lo == lo:
-                bb = fact * (col & mask)
-                img.set_at((x, y), (rr, gg, bb))
-            if col & hi == hi and col & lo == lo:
-                gg = fact * (col & mask)
-                img.set_at((x, y), (rr, gg, bb))
-            if col & hi == hi and col & lo == 0:
-                rr = fact * (col & mask)
-                img.set_at((x, y), (rr, gg, bb))
-        else:
+    for y in range(ydim):
+        for x in range(xdim):
+            col = bb[xdim * y + x]
             img.set_at((x, y), colormap[col])
 
 # Draw IFF palette file

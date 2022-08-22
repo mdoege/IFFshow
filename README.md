@@ -14,6 +14,8 @@ The common Amiga graphics modes including EHB, HAM6, HAM8, and 24-/32-bit deep c
 
 Standalone IFF palette files are also supported and do not require the "pal" argument.
 
+There is also experimental support for 8-bit IFF-PBM images.
+
 ### License
 
 Public Domain / CC0
