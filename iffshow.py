@@ -30,7 +30,7 @@ def get_size(n):
     return 256**3 * a[n] + 256**2 * a[n+1] + 256 * a[n+2] + a[n+3]
 
 xdim, ydim, planes, comp, HAM = 0, 0, 1, False, False
-colormap = []
+colormap, colormap_pure = [], []
 
 def bmhd(n):
     "BMHD chunk handler"
@@ -50,7 +50,7 @@ def bmhd(n):
 
 def cmap(n):
     "CMAP chunk handler"
-    global colormap
+    global colormap, colormap_pure
 
     s = get_size(n+4)
     n += 8
@@ -61,6 +61,7 @@ def cmap(n):
         cm2.append( (a[n+3*i]//2, a[n+3*i+1]//2, a[n+3*i+2]//2) )
     #print(colormap)
     colormap = cm1 + cm2
+    colormap_pure = cm1
     print(s // 3, "colors loaded")
 
 if s(0) != "FORM":
@@ -180,8 +181,8 @@ if planes == 0:
     for y in range(16):
         for x in range(16):
             i = 16 * x + y
-            if i < len(colormap):
-                img.set_at((x, y), colormap[i])
+            if i < len(colormap_pure):
+                img.set_at((x, y), colormap_pure[i])
 
 # Open a PyGame window
 
