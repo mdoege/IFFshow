@@ -71,6 +71,8 @@ if s(8) != "ILBM":
     print("not an ILBM")
     sys.exit(1)
 
+file_size = get_size(4) + 8
+
 pos = 12
 
 body_start = 0
@@ -92,7 +94,7 @@ while True:
     if siz % 2:
         siz += 1
     pos += 8 + siz
-    if pos >= len(a):
+    if pos >= len(a) or pos >= file_size:
         break
 
 img = pygame.Surface((xdim, ydim))
