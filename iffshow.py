@@ -105,7 +105,7 @@ while True:
         break
 
 if ONLY_PAL:
-    xydim, ydim, planes = 0, 0, 0
+    xdim, ydim, planes = 0, 0, 0
 
 img = pygame.Surface((xdim, ydim))
 
