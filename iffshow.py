@@ -104,6 +104,7 @@ pos = body_start
 bits_per_line = 16 * int(ceil(xdim / 16))
 bytes_per_line = int(bits_per_line * planes / 8)
 
+# Draw regular IFF file
 for y in range(ydim):
     # handle run-length image compression
     if comp == 1:
@@ -172,6 +173,15 @@ for y in range(ydim):
         else:
             img.set_at((x, y), colormap[col])
 
+# Draw IFF palette file
+if planes == 0:
+    print("palette file")
+    img = pygame.Surface((16, 16))
+    for y in range(16):
+        for x in range(16):
+            i = 16 * x + y
+            if i < len(colormap):
+                img.set_at((x, y), colormap[i])
 
 # Open a PyGame window
 
