@@ -9,12 +9,6 @@ from math import ceil
 # window resolution
 res = 1200, 900
 
-# Show image palette instead of image?
-if len(sys.argv) > 2 and sys.argv[2] == "pal":
-    ONLY_PAL = True
-else:
-    ONLY_PAL = False
-
 fn = sys.argv[1]
 
 f = open(fn, "rb")
@@ -107,9 +101,6 @@ while True:
     pos += 8 + siz
     if pos >= len(a) or pos >= file_size:
         break
-
-if ONLY_PAL:
-    xdim, ydim, planes = 0, 0, 0
 
 img = pygame.Surface((xdim, ydim))
 
@@ -216,14 +207,12 @@ else:   # read PBM image
             img.set_at((x, y), colormap[col])
 
 # Draw IFF palette file
-if planes == 0:
-    print("palette file")
-    img = pygame.Surface((16, 16))
-    for y in range(16):
-        for x in range(16):
-            i = 16 * x + y
-            if i < len(colormap_pure):
-                img.set_at((x, y), colormap_pure[i])
+pal = pygame.Surface((16, 16))
+for y in range(16):
+    for x in range(16):
+        i = 16 * x + y
+        if i < len(colormap_pure):
+            pal.set_at((x, y), colormap_pure[i])
 
 # Open a PyGame window
 
@@ -231,15 +220,22 @@ pygame.init()
 
 screen = pygame.display.set_mode(res)
 img2 = pygame.transform.scale(img, res)
+pal2 = pygame.transform.scale(pal, res)
 run = True
 pygame.display.set_caption(f"IFFshow: {os.path.basename(fn)} ({xdim}x{ydim})")
+showpal = False
 
 while run:
     for event in pygame.event.get():
         if (event.type == pygame.QUIT or 
             (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE)):
             run = False
-    screen.blit(img2, (0, 0))
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            showpal = not showpal
+    if planes == 0 or showpal:
+        screen.blit(pal2, (0, 0))
+    else:
+        screen.blit(img2, (0, 0))
     pygame.display.flip()
     time.sleep(0.1)
 
