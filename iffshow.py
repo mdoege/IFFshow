@@ -9,6 +9,12 @@ from math import ceil
 # window resolution
 res = 1200, 900
 
+# Show image palette instead of image?
+if len(sys.argv) > 2 and sys.argv[2] == "pal":
+    ONLY_PAL = True
+else:
+    ONLY_PAL = False
+
 fn = sys.argv[1]
 
 f = open(fn, "rb")
@@ -97,6 +103,9 @@ while True:
     pos += 8 + siz
     if pos >= len(a) or pos >= file_size:
         break
+
+if ONLY_PAL:
+    xydim, ydim, planes = 0, 0, 0
 
 img = pygame.Surface((xdim, ydim))
 
