@@ -34,6 +34,10 @@ DeluxePaint V on the Amiga can read these 24-bit IFF images and convert them e.g
 
 Similar to iff24.py, but it converts an input image to an uncompressed 6-bit HAM mode IFF-ILBM file. No palette is used, therefore image quality is not the greatest.
 
+    ham8.py filename
+
+Same as ham.py, but for 8-bit HAM mode. Parts of the image with subtle color gradients like the sky will look a bit better in HAM8 than in HAM6.
+
 ### License
 
 Public Domain / CC0
