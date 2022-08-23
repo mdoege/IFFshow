@@ -26,7 +26,9 @@ The input should be a JPG or PNG file and preferably in an aspect ratio close to
 
 By default the output image is in low-res PAL resolution (320x256px).
 
-#### HAM6
+DeluxePaint V on the Amiga can read these 24-bit IFF images and convert them e.g. to HAM8 or 256 colors if you disable the DPaint backing store.
+
+#### HAM
 
     ham.py filename
 
