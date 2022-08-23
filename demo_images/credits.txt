@@ -1,0 +1,115 @@
+Image credits and notes
+=======================
+
+amiga_lagoon.iff
+
+        Demo image by Jim Sachs for the "Brilliance" painting program
+
+clipper.iff
+
+        EHB image by Rick Parks
+
+enterprise.iff
+
+        Picture from disk one of the "Star Trek" game by Tobias Richter (1989).
+        The game is also available on Fish Disk 409.
+
+fashion.iff
+
+        HAM demo picture for the NewTek "Digi-Paint" painting program.
+        An iconic picture, due to being prominently used
+        in NewTek advertising.
+
+glass.iff
+
+        DBW-Render ray-traced glass scene (1988).
+        This image was somewhat iconic on the Amiga,
+        probably due to its presence on Fish Disk. An impressive
+        demonstration of Amiga HAM mode.
+        Probably rendered on a VAX like the other pictures by Dave Wecker.
+
+        From Fish Disk 44:
+
+        RayTracePics	Ray tracing pictures, some of which appeared on disk
+		        number 39, but now in IFF HAM format for MUCH faster
+		        loading and compatibility with existing IFF tools.
+		        Author:  Dave Wecker
+
+king_tut.iff
+
+        DeluxePaint I/II/III demo picture
+        Was also used on the DeluxePaint cover and in advertising and came to
+        symbolize DeluxePaint and the Amiga.
+
+kugel.iff
+
+        Ray traced picture by the "Tracer" software, early 1990s. While the
+        image is 24-bit, only the upper nibbles are used, so it is effectively
+        a 12-bit image. So basically HAM without the HAM artifacts.
+        The spheres look squashed vertically, which was probably due to a
+        mistake in the Tracer image settings.
+
+next_gen.iff
+
+        Star Trek: The Next Generation picture created by "Park".
+        Probably created in 1987 or 1988, as Tasha Yar was not long
+        for this world.
+
+porsche930.iff
+
+        An impressive HAM overscan + interlaced image, created with
+        some seriously professional scanning hardware for the time.
+
+        From Fish Disk 196:
+
+        HamPics		These are some of the most stunning digitized pictures
+		        yet for the Amiga.  They were scanned at a resolution
+		        of 4096 by 2800 pixels, 36-bits per pixel, on an
+		        Eikonix 1435 slide scanner, cropped, gamma corrected,
+		        scaled, and converted to Amiga IFF HAM files.  They are
+		        displayed with a special ILBM loader that handles
+		        overscan HAM images.  Includes source for the display
+		        program.
+		        Author:  Jonathan Hue
+
+room.iff
+
+        Ray-traced picture by Dave Wecker (1988) from Fish Disk 44 (and 39),
+        like glass.iff.
+        Took 3 hours and 28 minutes to render on a VAX-8650 according
+        to the README on Fish Disk 39.
+
+spock.iff
+
+        Star Trek picture created by "Park".
+        McCoy's quote is based on the episode "The Ultimate Computer",
+        but it appears Spock now prefers an Amiga 1000 over the M-5 computer.
+
+starflight.iff
+
+        DeluxePaint demo picture from the EA game "Starflight" (1986),
+        created by Greg Johnson in 1985.
+        Apparently the design of the alien bridge is based on a concept sketch
+        by Ron Cobb for the 1979 film "Alien".
+
+stone_circle.lbm
+
+        Image by Mark J. Ferrari in IFF-PBM format
+        Created on a PC with DeluxePaint II
+
+tng.iff
+
+        DeluxePaint V HAM8 conversion of a BluRay screenshot from trekcore.com
+        from the ST:TNG episode "The Arsenal of Freedom".
+
+tos.iff
+
+        DeluxePaint V HAM8 conversion of a BluRay screenshot from trekcore.com
+        from the Star Trek episode "Miri".
+
+worldmap.iff
+
+        DeluxePaint IV demo picture.
+        This image was used to show the 3-D functions of DPaint IV,
+        by stretching it around a sphere as a texture.
+
