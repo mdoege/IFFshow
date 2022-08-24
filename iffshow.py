@@ -7,7 +7,7 @@ import sys, os, time
 from math import ceil
 
 # window resolution
-res = 1200, 900
+res = 1280, 960
 
 fn = sys.argv[1]
 

@@ -8,7 +8,7 @@ Loads the picture given as a commandline argument and displays it in a PyGame wi
 
 Press Space to toggle showing the image palette. Press Escape or close the window to quit.
 
-Images are always resized to the size of the IFFshow window (1200x900px by default).
+Images are always resized to the size of the IFFshow window (1280x960px by default).
 
 The common Amiga graphics modes including EHB, HAM6, HAM8, and 24-/32-bit deep color should all work. There is also support for 8-bit IFF-PBM images.
 
