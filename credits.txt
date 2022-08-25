@@ -66,9 +66,7 @@ porsche930.iff
 
 ref.iff
 
-        1992 ray-traced picture by the "Reflections 2.0" software. While the
-        image is 24-bit, only the upper nibbles are used, so it is effectively
-        a 12-bit image. So basically HAM without the HAM artifacts.
+        1992 ray-traced picture by the "Reflections 2.0" software.
         The spheres look squashed vertically, which was probably due to a
         mistake in the Reflections image settings.
 
