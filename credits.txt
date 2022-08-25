@@ -66,9 +66,7 @@ porsche930.iff
 
 ref.iff
 
-        1992 ray-traced picture by the "Reflections 2.0" software.
-        The spheres look squashed vertically, which was probably due to a
-        mistake in the Reflections image settings.
+        Ray-traced picture made with "Reflections 2.0"
 
 room.iff
 
