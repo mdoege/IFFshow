@@ -64,6 +64,14 @@ porsche930.iff
 		        program.
 		        Author:  Jonathan Hue
 
+ref.iff
+
+        1992 ray-traced picture by the "Reflections 2.0" software. While the
+        image is 24-bit, only the upper nibbles are used, so it is effectively
+        a 12-bit image. So basically HAM without the HAM artifacts.
+        The spheres look squashed vertically, which was probably due to a
+        mistake in the Reflections image settings.
+
 room.iff
 
         Ray-traced picture by Dave Wecker (1988) from Fish Disk 44 (and 39),
@@ -98,14 +106,6 @@ tos.iff
 
         DeluxePaint V HAM8 conversion of a BluRay screenshot from trekcore.com
         from the Star Trek episode "Miri".
-
-tracer.iff
-
-        Ray traced picture by the "Tracer" software, early 1990s. While the
-        image is 24-bit, only the upper nibbles are used, so it is effectively
-        a 12-bit image. So basically HAM without the HAM artifacts.
-        The spheres look squashed vertically, which was probably due to a
-        mistake in the Tracer image settings.
 
 worldmap.iff
 
