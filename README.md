@@ -6,7 +6,11 @@
 
 Loads the picture given as a commandline argument and displays it in a PyGame window.
 
-Press Space to toggle showing the image palette. Press Escape or close the window to quit.
+Keyboard controls:
+
+* Space to toggle showing the image palette
+* S to save image as PNG
+* Escape (or closing the window) to quit
 
 Images are always resized to the size of the IFFshow window (1280x960px by default).
 

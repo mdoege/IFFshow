@@ -232,6 +232,8 @@ while run:
             run = False
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
             showpal = not showpal
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
+            pygame.image.save(img2, fn + ".png")
     if planes == 0 or showpal:
         screen.blit(pal2, (0, 0))
     else:
