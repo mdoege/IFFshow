@@ -29,7 +29,7 @@ def get_size(n):
     "Get chunk size"
     return 256**3 * a[n] + 256**2 * a[n+1] + 256 * a[n+2] + a[n+3]
 
-xdim, ydim, planes, comp, HAM = 0, 0, 1, False, False
+xdim, ydim, planes, comp, HAM, EHB = 0, 0, 1, False, False, False
 colormap, colormap_pure = [], []
 
 def bmhd(n):
@@ -94,6 +94,9 @@ while True:
         if a[pos + 10] & 8:
             print("HAM mode")
             HAM = True 
+        if a[pos + 11] & 0x80:
+            print("EHB mode")
+            EHB = True
     if ch == "BODY":
         body_start = pos + 8
     if siz % 2:
@@ -101,6 +104,17 @@ while True:
     pos += 8 + siz
     if pos >= len(a) or pos >= file_size:
         break
+
+# set EHB colors:
+if EHB:
+    cm1, cm2 = [], []
+    for i in range(32):
+        r, g, b = colormap[i]
+        cm1.append((r, g, b))
+        # add EHB colors:
+        cm2.append((r//2, g//2, b//2))
+    colormap = cm1 + cm2
+    colormap_pure = cm1
 
 img = pygame.Surface((xdim, ydim))
 
