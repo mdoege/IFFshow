@@ -16,6 +16,8 @@ Images are always resized to the size of the IFFshow window (1280x960px by defau
 
 The common Amiga graphics modes including EHB, HAM6, HAM8, and 24-/32-bit deep color should all work. There is also support for 8-bit IFF-PBM images.
 
+Note that SDL_image (and therefore PyGame) can actually load IFF images directly, so decoding IFF in Python like in iffshow.py is not really necessary. I only learned this *after* writing iffshow.py though...
+
 ### IFF-ILBM creation scripts
 
 (Both require PyGame)
