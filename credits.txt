@@ -75,6 +75,10 @@ room.iff
         Took 3 hours and 28 minutes to render on a VAX-8650 according
         to the README on Fish Disk 39.
 
+rt32.iff / rt64.iff
+        Ray-traced pictures from the book "Amiga 3D-Grafik und Animation" by 
+        Axel Plenge (1988), 32-color and 64-color versions
+
 spock.iff
 
         Star Trek picture created by "Park".
